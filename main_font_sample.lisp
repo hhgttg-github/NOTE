@@ -1,21 +1,28 @@
+
+
+;(defparameter *NotoRegular16* nil)
+(defparameter *NotoBold16*    nil)
+(defparameter *NotoBlack16*   nil)
+
 (defun main ()
   (sdl:with-init ()
     (sdl:window 640 480 :title-caption "test" ) 
     (setf (sdl:frame-rate) 60)
 
+    ;;; *default-font*は*NotoRegular16*に設定すみ
     (sdl:fill-surface sdl:*white* :surface sdl:*default-display*)
     (unless (sdl:initialise-default-font *default-font*)
       (error "FONT-EXAMPLE: Cannot initialize the default font."))
 
     ;;;; 以下、(sdl:draw-string-* :font xxx) で使用するフォントオブジェクト
     ;;;; これはwith-init内で宣言する必要あり。
-    
-    (defparameter *NotoRegular16*
-      (sdl:initialise-font *ttc-font-NotoRegular16*))
-    (defparameter *NotoBold16*
+;    (setf *NotoRegular16*
+;      (sdl:initialise-font *ttc-font-NotoRegular16*))
+    (setf *NotoBold16*
       (sdl:initialise-font *ttc-font-NotoBold16*))
-    (defparameter *NotoBlack16*
+    (setf *NotoBlack16*
       (sdl:initialise-font *ttc-font-NotoBlack16*))
+    
     
 ;;;; 以下の2つは、*default-font*(*NotoRegular16*)で描かれる。
     
